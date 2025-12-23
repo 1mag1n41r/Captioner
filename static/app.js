@@ -1,7 +1,6 @@
 (function () {
   const body = document.body;
 
-  // ---- Theme (dark mode) ----
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") body.classList.add("dark");
 
@@ -13,7 +12,7 @@
     });
   }
 
-  // ---- File upload label ----
+
   const fileInput = document.getElementById("fileInput");
   const fileLabel = document.getElementById("fileLabel");
   if (fileInput && fileLabel) {
@@ -24,7 +23,6 @@
     });
   }
 
-  // ---- Loading overlay ----
   const overlay = document.getElementById("loadingOverlay");
   function showLoading() {
     if (overlay) overlay.classList.remove("hidden");
@@ -44,7 +42,6 @@
     });
   }
 
-  // ---- Copy caption ----
   const copyBtn = document.getElementById("copyBtn");
   const captionText = document.getElementById("captionText");
   if (copyBtn && captionText) {
