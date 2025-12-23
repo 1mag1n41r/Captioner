@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dreamy Captioner</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+  <span class="sun">☀</span><span class="moon">🌙</span>
+</button>
+
+<div class="card">
+  <h1>✨ Dreamy Captioner</h1>
+  <p class="subtitle">Upload a photo. We’ll do the magic.</p>
+
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
+
+  <form id="uploadForm" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="stage" value="upload">
+
+    <label class="upload-box">
+      <input id="fileInput" type="file" name="image" accept="image/*" required hidden>
+      <span id="fileLabel">Click to upload an image</span>
+    </label>
+
+    <button type="submit" class="primary-btn">Generate Tags</button>
+  </form>
+</div>
+
+<!-- Loading overlay -->
+<div id="loadingOverlay" class="overlay hidden" aria-hidden="true">
+  <div class="loader-card">
+    <div class="spinner"></div>
+    <div class="loader-title">Working on it…</div>
+    <div class="loader-sub">Generating tags</div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

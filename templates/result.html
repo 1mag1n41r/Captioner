@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Caption</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+  <span class="sun">☀</span><span class="moon">🌙</span>
+</button>
+
+<div class="card wide">
+
+  <img src="/static/uploaded/{{ image_file }}" class="preview">
+
+  <h2>Suggested tags</h2>
+  <div class="tag-list">
+    {% for t in auto_tags %}
+      <span class="tag">{{ t }}</span>
+    {% endfor %}
+  </div>
+
+  <form id="captionForm" method="POST">
+    <input type="hidden" name="stage" value="caption">
+    <input type="hidden" name="image_file" value="{{ image_file }}">
+    <input type="hidden" name="auto_tags" value="{{ auto_tags | join(', ') }}">
+
+    <label>Edit / add tags (optional)</label>
+    <input
+      type="text"
+      name="custom_tags"
+      value="{{ final_tags | join(', ') }}"
+      placeholder="dog, sunset, quiet moment"
+    >
+
+    <button type="submit" class="primary-btn">Generate Caption</button>
+  </form>
+
+  {% if caption %}
+    <div class="caption-box">
+      <p id="captionText">{{ caption }}</p>
+      <button id="copyBtn" class="ghost-btn" type="button">Copy caption</button>
+    </div>
+  {% endif %}
+
+  <a href="/" class="secondary-btn">Upload another photo</a>
+
+</div>
+
+<!-- Loading overlay -->
+<div id="loadingOverlay" class="overlay hidden" aria-hidden="true">
+  <div class="loader-card">
+    <div class="spinner"></div>
+    <div class="loader-title">Almost there…</div>
+    <div class="loader-sub">Generating caption</div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
